@@ -1,0 +1,82 @@
+* Table of Content (TOC) for ArcGIS JavaScript API
+
+This sample application shows a Table Of Content in a standard JavaScript
+Viewer. The TOC behaves like in ArcMap. The map is from a sample service at
+ArcGIS Online.
+
+
+* Link at ArcGIS Online
+
+See also [[http://www.arcgis.com/home/item.html?id=98d9e760d6d1496487ca583b0e8ce73c]] on ArcGIS Online.
+
+
+* cbtree by Peter Jeckel
+
+This sample uses the "Dijit Tree with Multi State Checkboxes" from
+[[http://www.thejekels.com/blog/]]. I gues it should also work with a common
+DOJO-Tree. I've used the Multi-State-Checkboxes for a previous
+implementation where the group-layer logic wasn't implemented.
+
+That code is also available here at GitHub, now called "cbtree":
+[[https://github.com/pjekel/cbtree]]
+
+This sample uses the version from Release date: 02/12/2010. Please read the
+LICENSE file.
+
+
+* Another solution
+
+Another nice example of a TOC is provided by nliu and can be downloaded
+here:
+[[https://www.arcgis.com/home/item.html?id=9b6280a6bfb0430f8d1ebc969276b109]].
+It is called: "Table of Contents(TOC)/Legend Combo widget for JavaScript
+API."
+
+
+* Usage
+
+You need to create a JSON-datastore file (placed here in ./datastore) where
+the hierachy of your MapService is defined and which is used directly to
+create the tree-structure of the TOC. Unfortunetaly you have to write that
+datastore file for yourself. You can get the information directly from the
+REST-endpoint of the MapService and restructure it to the hierarchy
+style. There is no wizard/app for creating this datastore file yet. This
+file is the bridge between the tree itself and the MapService. It should be
+possible to get rid of this datastore. You have to parse the information of
+the MapService REST endpoint and create the tree dynamically. But I haven't
+coded that, yet.
+
+The whole logic and how I have implemented it is based on the basic DOJO
+topics of trees, stores and models. Please, see the DOJO documentation for
+details.
+
+
+* Some notes
+
+Side note: The concept of the TOC is debatable. Modern webapplications
+should not need a TOC anymore. The logic of switching layer visibility
+should be implemented with better and clearer interfaces (for example:
+pressing a button switches a couple of layers (themes) off and another
+couple of layers (themes) on). TOCs have the disadvantage to let the user
+decrease the performance of the viewer (by switching all layers on) and to
+overload the map with information (layers covering other layers
+completely). It's better and more user-friendly to build layer-logic
+completely into the client with other concepts although the TOC gives the
+user full control of what he wants to see. As I said: It's debatable. A TOC
+does not fit well into the concept of Stimplicity (stupid and simple).
+
+I have implemented several milestones for this TOC. See also this forum
+entry:
+[[http://forums.arcgis.com/threads/12220-Layer-control-(TOC)-Hide-or-Show-layers-and-or-group-layers]]. The
+major change now is the behaviour of the TOC. In previous versions checking
+the group-layer changes the visibility of all sub-layers (see the
+multi-state-checkboxes). The recent version has code to implement the logic
+and behaviour of the TOC like in ArcMap. Checking/Unchecking the group-layer
+doesn't change the visibility of the sub-layers. But if a group-layer is
+unchecked, the sub-layers are not visible.
+
+
+* Remark
+
+Please consider this code as a sample. I have updated it to ArcGIS JS-API v3
+but I will not put too much effort in it in the future.
